@@ -3,7 +3,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const userController = {
-  // Obtener todos los usuarios
   async getUsers(req, res) {
     try {
       const users = await User.findAll({ include: [{ model: Status, as: 'status' }] });
@@ -14,7 +13,6 @@ const userController = {
     }
   },
 
-  // Crear un usuario
   async createUser(req, res) {
     try {
       const { fullName, email, password, statusId } = req.body;
@@ -33,7 +31,6 @@ const userController = {
     }
   },
 
-  // Obtener usuario por ID
   async getUserById(req, res) {
     try {
       const user = await User.findByPk(req.params.id, { include: ['status'] });
@@ -45,7 +42,6 @@ const userController = {
     }
   },
 
-  // Actualizar usuario
   async updateUser(req, res) {
     try {
       const { fullName, email, statusId } = req.body;
@@ -59,7 +55,6 @@ const userController = {
     }
   },
 
-  // Eliminar usuario
   async deleteUser(req, res) {
     try {
       const user = await User.findByPk(req.params.id);

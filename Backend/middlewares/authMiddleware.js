@@ -10,8 +10,8 @@ const verifyToken = (req, res, next) => {
 
   try {
     const verified = jwt.verify(token.replace('Bearer ', ''), process.env.JWT_SECRET);
-    req.user = verified; // Almacenar los datos del usuario en `req.user`
-    next(); // Continuar con la petición
+    req.user = verified;
+    next();
   } catch (error) {
     res.status(401).json({ error: 'Token inválido' });
   }
