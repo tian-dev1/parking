@@ -1,6 +1,5 @@
 const { Vehicle, Status } = require('../models');
 
-// ✅ Obtener todos los vehículos
 const getVehicles = async (req, res) => {
   try {
     const vehicles = await Vehicle.findAll({
@@ -15,12 +14,10 @@ const getVehicles = async (req, res) => {
   }
 };
 
-// ✅ Obtener un vehículo por ID
 const getVehicleById = async (req, res) => {
   try {
     const vehicle = await Vehicle.findByPk(req.params.id, {
       include: [
-        //{ model: User, as: 'user', attributes: ['id', 'fullName', 'email'] },
         { model: Status, as: 'status', attributes: ['id', 'name'] }
       ]
     });
@@ -36,7 +33,6 @@ const getVehicleById = async (req, res) => {
   }
 };
 
-// ✅ Crear un nuevo vehículo
 const createVehicle = async (req, res) => {
   try {
     const { licensePlate, type, isElectric, statusId } = req.body;
@@ -49,7 +45,6 @@ const createVehicle = async (req, res) => {
   }
 };
 
-// ✅ Actualizar un vehículo
 const updateVehicle = async (req, res) => {
   try {
     const { licensePlate, type, isElectric, statusId } = req.body;
@@ -67,7 +62,6 @@ const updateVehicle = async (req, res) => {
   }
 };
 
-// ✅ Eliminar un vehículo
 const deleteVehicle = async (req, res) => {
   try {
     const vehicle = await Vehicle.findByPk(req.params.id);

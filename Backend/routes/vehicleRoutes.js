@@ -3,7 +3,6 @@ const router = express.Router();
 const vehicleController = require('../controllers/vehicleController');
 const verifyToken = require('../middlewares/authMiddleware');
 
-// Rutas protegidas con JWT
 router.get('/', verifyToken, vehicleController.getVehicles);
 router.get('/:id', verifyToken, vehicleController.getVehicleById);
 router.post('/', verifyToken, vehicleController.createVehicle);

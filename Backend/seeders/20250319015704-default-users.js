@@ -3,14 +3,14 @@ const bcrypt = require('bcrypt');
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    const hashedPassword = await bcrypt.hash('password123', 10); // Hashear la contraseña
+    const hashedPassword = await bcrypt.hash('password123', 10);
 
     return queryInterface.bulkInsert('Users', [
       {
         fullName: 'Cristian Arevalo',
         email: 'cristian@example.com',
         passwordHash: hashedPassword,
-        statusId: 1, // Asegúrate de que existe un estado válido en la tabla Status
+        statusId: 1, 
         createdAt: new Date(),
         updatedAt: new Date()
       },

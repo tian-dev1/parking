@@ -1,6 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const ParkingEntry = sequelize.define('ParkingEntry', {
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
     vehicleId: { type: DataTypes.INTEGER, allowNull: false },
     parkingSpotId: { type: DataTypes.INTEGER, allowNull: false },
     checkInTime: { type: DataTypes.DATE, allowNull: false },
@@ -10,9 +11,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
 
   ParkingEntry.associate = (models) => {
-    ParkingEntry.belongsTo(models.Vehicle, { foreignKey: 'vehicleId' });
-    ParkingEntry.belongsTo(models.ParkingSpot, { foreignKey: 'parkingSpotId' });
-    ParkingEntry.belongsTo(models.Status, { foreignKey: 'statusId' });
+    ParkingEntry.belongsTo(models.Vehicle, { foreignKey: 'vehicleId', as: "vehicle" });
+    ParkingEntry.belongsTo(models.ParkingSpot, { foreignKey: 'parkingSpotId', as: "parkingSpot" });
+    ParkingEntry.belongsTo(models.Status, { foreignKey: 'statusId', as: "status" });
   };
 
   return ParkingEntry;
